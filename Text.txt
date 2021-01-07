@@ -1,0 +1,45 @@
+Curtis
+Merritt
+Black
+Walden Road
+11
+5
+Female
+20
+
+Donald
+Tramp
+Jhohn
+Rowland Rd
+13
+7
+Other
+8
+
+Donald
+Horton
+Garcia
+Stroude Road
+12
+6
+Male
+9
+
+Mark
+Jordan
+Smith
+Dover Road
+10
+4
+Male
+30
+
+Thomas
+McCoy
+Miller
+Stuart Street
+11
+7
+Male
+17
+
