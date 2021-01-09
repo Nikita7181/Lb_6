@@ -28,17 +28,17 @@ struct myAddress{
     }
 };
 
-template<typename T> std::string toString(const T &t)
+template<typename T> string toString(const T &t)
 {
-    std::stringstream ss;
+    stringstream ss;
     ss << t;
     return ss.str();
 }
 
-std::ifstream & operator>> (std::ifstream& is , std::string& str)
+std::ifstream & operator>> (std::ifstream& is , string& str)
 {
     //char ch[255];
-    std::string tmp;
+    string tmp;
     std::getline(is, tmp);
     str = tmp;
     //
@@ -47,7 +47,7 @@ std::ifstream & operator>> (std::ifstream& is , std::string& str)
 
 std::ofstream & operator<< (std::ofstream& os , const myAddress& addr)
 {
-    os << addr.street.c_str() << std::endl << addr.house_number << std::endl << addr.apartment_number << std::endl;
+    os << addr.street.c_str() << endl << addr.house_number << endl << addr.apartment_number << endl;
     return os;
 }
 
@@ -59,7 +59,7 @@ std::ostream & operator<< (std::ostream& os , const myAddress& addr)
 
 std::ifstream& operator>> (std::ifstream& is , myAddress& addr)
 {
-    std::string s1, s2;
+    string s1, s2;
     
     std::getline(is, addr.street);
     std::getline(is, s1);
@@ -93,7 +93,7 @@ struct myFullname
 
 std::ofstream & operator<< (std::ofstream& os , const myFullname & Fullname)
 {
-    os << Fullname.firstname.c_str() << std::endl << Fullname.midlename.c_str() << std::endl << Fullname.lastname.c_str() << std::endl;
+    os << Fullname.firstname.c_str() << endl << Fullname.midlename.c_str() << endl << Fullname.lastname.c_str() << endl;
     return os;
 }
 
@@ -143,8 +143,8 @@ std::ofstream & operator<< (std::ofstream& os , const myResident & rsdnt)
     os << rsdnt.address;
     //os << " ";
     os << rsdnt.sex.c_str();
-    os << std::endl;
-    os << rsdnt.age <<std::endl;
+    os << endl;
+    os << rsdnt.age <<endl;
     return os;
 }
 
@@ -156,7 +156,7 @@ std::ifstream & operator>> (std::ifstream& is , myResident & rsdnt)
     //os << " ";
     std::getline(is, rsdnt.sex);
     
-    std::string s1;
+    string s1;
     std::getline(is, s1);
     rsdnt.age = s1=="" ? 0 : std::stoi(s1);
     
@@ -220,7 +220,7 @@ void sortByStreet(std::vector<myResident>& arr)// сортировка по ул
     }
 }
 
-void saveDatadaseInTextFormat (std::vector<myResident>& arr, std::string fileName)// сохранение в текстовом формате
+void saveDatadaseInTextFormat (std::vector<myResident>& arr, string fileName)// сохранение в текстовом формате
 {
     std::ofstream text_database;
     text_database.open(fileName);
@@ -232,7 +232,7 @@ void saveDatadaseInTextFormat (std::vector<myResident>& arr, std::string fileNam
     text_database.close();
 }
 
-std::vector<myResident> loadDatabaseFromText (std::string fileName)// загрузка в текстовом формате
+std::vector<myResident> loadDatabaseFromText (string fileName)// загрузка в текстовом формате
 {
     std::vector<myResident> tmp;
     
@@ -240,7 +240,7 @@ std::vector<myResident> loadDatabaseFromText (std::string fileName)// загру
     text_database.open(fileName);
     if (!text_database)
     {
-        std::cout << "Error open file " << fileName;
+        cout << "Error open file " << fileName;
         std::vector<myResident> arr;
         return arr;
     }
@@ -301,19 +301,19 @@ void PrintUnderageCountsForStreets (std::vector<myResident>& arr)// подсчи
     {
         if (sp[i].street  != "" )
         {
-            std::cout << sp[i].street << ": " << sp[i].count << std::endl;
+         cout << sp[i].street << ": " << sp[i].count << endl;
             
         }
     }
 }
 
 
-void saveDatadaseInBinaryFormat (std::vector<myResident>& arr, std::string fileName)// для бинарного
+void saveDatadaseInBinaryFormat (std::vector<myResident>& arr, string fileName)// для бинарного
 {
     std::ofstream output (fileName, std::ios::binary);
     if (!output)
     {
-        std::cout << "Error to open file in write mode: " << fileName;
+       cout << "Error to open file in write mode: " << fileName;
         return;
     }
     for (int i = 0; i< arr.size(); i++)
@@ -325,7 +325,7 @@ void saveDatadaseInBinaryFormat (std::vector<myResident>& arr, std::string fileN
     
 }
 
-std::vector<myResident> loadDatabaseFromBinary (std::string fileName)// для бинарного
+std::vector<myResident> loadDatabaseFromBinary (string fileName)// для бинарного
 {
     std::vector<myResident> tmp;
     
@@ -351,7 +351,7 @@ void printUnderage(std::vector<myResident>& arr)// вывод несоверше
     {
         if (arr[i].age < 18)
         {
-            std::cout << arr[i].address.street << ": " << arr[i].Fullname << std::endl;
+          cout << arr[i].address.street << ": " << arr[i].Fullname << endl;
         }
     }
 }
@@ -361,7 +361,7 @@ void printAll (std::vector<myResident>& arr)// функция печати
     int databawseSize = getDatabaseSize(arr);
     for (int i = 0; i < databawseSize; i++)
     {
-        cout << arr[i] << std::endl;
+        cout << arr[i] << endl;
     }
 }
 
@@ -378,12 +378,12 @@ int main()
     people = loadDatabaseFromText("text_database.txt");
     printAll (people);
     
-    std::cout << "sort" << std::endl;
+    cout << "sort" << endl;
     sort(people);
     printAll (people);
     saveDatadaseInTextFormat(people,"Text.txt");
     
-    std::cout << "save and load from binary format" << std::endl;
+    cout << "save and load from binary format" << endl;
     printAll (people);
     
     saveDatadaseInBinaryFormat (people, "bin_database.bin");
@@ -392,7 +392,7 @@ int main()
     people = loadDatabaseFromBinary ("bin_database.bin");
     printAll (people);
     
-    std::cout << "print underage by street" << std::endl;
+    cout << "print underage by street" << endl;
     sortByStreet(people);
     PrintUnderageCountsForStreets (people);
     printUnderage(people);
